@@ -1,7 +1,7 @@
 # Name - Deepesh Kumar Singh 
 # CSULB ID - 016149963
 
-#Exercise 1
+#Exercise 1 : i) 5-fold cross validation, and ii) training accuracy from training over the entire data set
 best.svm.cross <- function(data_frame,d,c,n) {
 	max <- 0
 	max_list <- c()
@@ -60,7 +60,7 @@ best.svm.cross <- function(data_frame,d,c,n) {
 	hist(vec_diff,right=FALSE)
 }
 
-# FUNCTION USED in Exercise 2 
+# FUNCTION USED in Exercise 2  . Used to provide the best svm model to be used in below function 
 best.svm.cross2 <- function(data_frame,d,c,n) {
 	max <- 0
 	max_list <- c()
@@ -299,10 +299,10 @@ binary_search <- function(data_frame,b,cost)
 	cat("TRAINING ACCURACY")
 	print((count)*100/nrow(data_frame))
 	hist(new_list,right=FALSE)
-
+# training accuracy and the average distance of the predicted class from the true class
 }
 
-# Exercise 4
+# Exercise 4 i) 5-fold cross validation of mean squared error (mse), and ii) mse over the entire data set.
 ex4 <- function(data_frame,e,c)
 {
 	plot(data_frame$X,data_frame$Y)
@@ -349,7 +349,7 @@ ex4 <- function(data_frame,e,c)
 	return(minimum_model)
 }
 
-#Exercise 5 part 1
+#Exercise 5 part 1  Plotted data points against the curve provided by the best svm -
 ex5 <- function(data_frame22,min_model)
 {
 	pl <- predict(min_model,data_frame22)
@@ -358,11 +358,9 @@ ex5 <- function(data_frame22,min_model)
 	points(data_frame22$X,pl,col="Blue")
 }
 
-#Exercise 5 part 2
+#Exercise 5 part 2   Plotted the svm model using 1,000 data points equally spaced between 0 to 10.
 ex5_2 <- function(data_frame22,min_model)
 {
-	pl <- predict(min_model,data_frame22)
-	points(data_frame22$X,pl,col="Red",pch=20)
 	vec_test <- seq(from=0.01,to=10,by=0.01)
 	myData.frame <- as.data.frame(vec_test)
 	colnames(myData.frame) <- c("X")
@@ -370,7 +368,7 @@ ex5_2 <- function(data_frame22,min_model)
 	points(vec_test,predY,col="Yellow")
 }
 
-#Exercise 6
+#Exercise 6   Finding a good support-vector regression machine for the abalone data set
 ex6 <- function(data_frame,d,e,c)
 {
 	k <- 1
@@ -432,7 +430,7 @@ main_learner <- function()
 	e <- c(1.75,1.5,1.0,0.1)
 
 	min_model <- ex4(data_frame22,e,cost2) # Exercise 4
-	ex5(data_frame22,min_model)     	   # Exercise 5
-	ex5_2(data_frame22,min_model)
+	ex5(data_frame22,min_model)     	   # Exercise 5 Part 1
+	ex5_2(data_frame22,min_model)		   # Exercise 5 Part 2
 	ex6(data_frame2,b,e,cost2)			   # Exercise 6
 }
